@@ -576,3 +576,17 @@ nav a[aria-current="page"] {
     color: var(--color-muted);
     text-align: center;
 }
+
+/* 导出内容按代码呈现，长行仅在代码区域内滚动。 */
+.export-panel {
+    margin-top: 20px;
+    min-width: 0;
+}
+#export-preview {
+    max-height: 320px;
+    overflow: auto;
+    padding: 18px;
+    background: var(--color-bg);
+    border-radius: 8px;
+    font: 12px/1.7 var(--font-code);
+}

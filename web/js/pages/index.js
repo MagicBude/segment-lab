@@ -1,9 +1,10 @@
-import { glyphs } from '../data/glyphs.js?v=20261029-baseline2';
-import { sevenSegment } from '../data/layouts.js?v=20261029-baseline2';
-import { encode, compose, hex } from '../core/encoding.js?v=20261029-baseline2';
-import { createDigit } from '../components/display.js?v=20261029-baseline2';
+import { createExport } from '../core/export.js';
+import { glyphs } from '../data/glyphs.js?v=20261029-export1';
+import { sevenSegment } from '../data/layouts.js?v=20261029-export1';
+import { encode, compose, hex } from '../core/encoding.js?v=20261029-export1';
+import { createDigit } from '../components/display.js?v=20261029-export1';
 
-import { renderBits, setupColor } from '../components/controls.js?v=20261029-baseline2';
+import { renderBits, setupColor } from '../components/controls.js?v=20261029-export1';
 const byId = id => document.getElementById(id);
 const state = { mask: 0x5B, polarity: 'cathode', category: 'all', query: '' };
 let exportText = '';
@@ -32,6 +33,7 @@ function renderSingle() {
 
 /** 多位输入失败时清除结果，防止旧段码被当作当前输入的输出。 */
 function renderComposer() {
+    renderExport();
     const display = byId('multi-display');
     const status = byId('compose-status');
     try {
@@ -83,3 +85,31 @@ if (selectedGlyph) {
     renderSingle();
 }
 setupColor();
+
+/** 预览与下载使用同一生成器，输入失效时禁用下载。 */
+function renderExport() {
+    try {
+        const result = createExport(byId('export-format').value, byId('text-input').value,
+            Number(byId('digits-input').value), state.polarity, glyphs);
+        byId('export-preview').textContent = result.content;
+        byId('download-export').disabled = false;
+        byId('export-status').textContent = result.filename;
+        return result;
+    } catch (error) {
+        byId('export-preview').textContent = '';
+        byId('download-export').disabled = true;
+        byId('export-status').textContent = error.message;
+        return null;
+    }
+}
+byId('export-format').addEventListener('change', renderExport);
+byId('download-export').addEventListener('click', () => {
+    const result = renderExport();
+    if (!result) return;
+    const url = URL.createObjectURL(new Blob([result.content], { type: 'text/plain;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = result.filename;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+});

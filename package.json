@@ -1,1 +1,7 @@
-{"private":true,"type":"module","scripts":{"test":"node --test tests/encoding.test.js"}}
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "node --test tests/encoding.test.js tests/export.test.js && node tests/page-smoke.mjs"
+    }
+}
