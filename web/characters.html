@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="段码实验室：字形查询、段码转换与多位数码管预览。">
+    <title>字符库 · Segment Lab</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/pages/characters.js"></script>
+</head>
+<body>
+    <a class="skip" href="#main">跳转到工作区</a>
+    <aside class="sidebar">
+        <a class="brand" href="index.html"><svg class="brand-icon" viewBox="0 0 44 58" aria-hidden="true"><path d="M10 3h20l4 4-4 4H10L6 7zm24 8 4 4v12l-4 4-4-4V15zm0 20 4 4v12l-4 4-4-4V35zM10 47h20l4 4-4 4H10l-4-4zM6 31l4 4v12l-4 4-4-4V35zm0-20 4 4v12l-4 4-4-4V15zm4 14h20l4 4-4 4H10l-4-4z"/><circle cx="42" cy="52" r="2"/></svg> SEGMENT LAB</a>
+        <p class="sidebar-caption">段式显示开发工具与参考资料</p>
+        <nav aria-label="主导航"><a href="index.html">01　显示实验台</a><a href="characters.html" aria-current="page">02　字符库</a><a href="encoding.html">03　编码原理</a></nav>
+        <div class="sidebar-foot">七段数码管 · 含小数点<br>字形 / 编码 / 多位预览</div>
+    </aside>
+    <main id="main">
+        <header class="page-header"><div><p class="eyebrow">DISPLAY ENGINEERING TOOLKIT</p><h1>字符库<span>Segment Lab</span></h1><p class="subtitle">查询字形、逻辑段码与同形关系，点击字符进入实验台。</p></div><span class="badge">七段 + DP</span></header>
+<div class="panel library-settings"><label for="polarity">段码极性<select id="polarity"><option value="cathode">共阴极</option><option value="anode">共阳极</option></select></label><label for="display-color">显示颜色<input id="display-color" type="color" value="#ff3838"></label><a href="segment-character-map.csv" download>下载 CSV ↗</a></div><section id="library" aria-labelledby="library-title"><div class="section-heading"><h2 id="library-title">字符库</h2><span>02 / GLYPH LIBRARY</span></div><div class="library-toolbar"><div id="filters" role="group" aria-label="字符分类"><button data-category="all" aria-pressed="true">全部</button><button data-category="digit" aria-pressed="false">数字</button><button data-category="upper" aria-pressed="false">大写</button><button data-category="lower" aria-pressed="false">小写</button><button data-category="symbol" aria-pressed="false">符号</button></div><label class="search-label">搜索<input id="search" placeholder="字符或段码，如 A、0x77" type="search"></label></div><p id="result-count" class="helper" aria-live="polite"></p><div id="glyph-grid" class="glyph-grid"></div></section><footer>SEGMENT LAB / 段码实验室 <span>段式显示技术与工具</span></footer><noscript>交互功能需要启用 JavaScript。</noscript></main></body></html>

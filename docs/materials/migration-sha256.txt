@@ -1,0 +1,2 @@
+e59cdb35fc8cf0117a9cbcfbfb647b6fb0e2660312a05812c0ae8f23f57bb73e  eps-pressure-switch-devboard/docs/design/segment-character-design.html
+5f7e5ca5adb297cd898db23ff6d3c4a045b506e6ee947c6740d6d008270e7bef  eps-pressure-switch-devboard/docs/design/segment-character-map.csv

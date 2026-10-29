@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="段码实验室：字形查询、段码转换与多位数码管预览。">
+    <title>编码原理 · Segment Lab</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/pages/encoding.js"></script>
+</head>
+<body>
+    <a class="skip" href="#main">跳转到工作区</a>
+    <aside class="sidebar">
+        <a class="brand" href="index.html"><svg class="brand-icon" viewBox="0 0 44 58" aria-hidden="true"><path d="M10 3h20l4 4-4 4H10L6 7zm24 8 4 4v12l-4 4-4-4V15zm0 20 4 4v12l-4 4-4-4V35zM10 47h20l4 4-4 4H10l-4-4zM6 31l4 4v12l-4 4-4-4V35zm0-20 4 4v12l-4 4-4-4V15zm4 14h20l4 4-4 4H10l-4-4z"/><circle cx="42" cy="52" r="2"/></svg> SEGMENT LAB</a>
+        <p class="sidebar-caption">段式显示开发工具与参考资料</p>
+        <nav aria-label="主导航"><a href="index.html">01　显示实验台</a><a href="characters.html">02　字符库</a><a href="encoding.html" aria-current="page">03　编码原理</a></nav>
+        <div class="sidebar-foot">七段数码管 · 含小数点<br>字形 / 编码 / 多位预览</div>
+    </aside>
+    <main id="main">
+        <header class="page-header"><div><p class="eyebrow">DISPLAY ENGINEERING TOOLKIT</p><h1>编码原理<span>Segment Lab</span></h1><p class="subtitle">从段位置、比特权值到段电平，建立完整的编码对应关系。</p></div><span class="badge">七段 + DP</span></header>
+<section id="guide"><div class="section-heading"><h2>编码原理</h2><span>03 / ENCODING</span></div><div class="guide-grid"><article class="panel"><span class="step">01</span><h3>段位置 → 比特</h3><p>a 是上横段，随后 b、c 为右侧，d 为下横段，e、f 为左侧，g 为中横段。bit0～bit7 依次对应 a、b、c、d、e、f、g、dp。</p><p>逻辑 1 表示点亮，0 表示熄灭。段名与器件引脚编号独立。</p></article><article class="panel"><span class="step">02</span><h3>比特 → 十六进制</h3><p>数字 2 点亮 a、b、d、e、g。从高位写起得到 0101 1011，每四位转换一次：</p><code class="formula">0101 1011₂ → 0x5B</code><p>字符 '2' 的 ASCII 为 0x32，与显示段码不同。</p></article><article class="panel"><span class="step">03</span><h3>逻辑 → 段电平</h3><p>位序相同、直接驱动且没有额外反相时，共阴段电平等于逻辑段码，共阳段电平为其八位取反。</p><code class="formula">0x5B XOR 0xFF → 0xA4</code><p>专用驱动芯片还须遵循寄存器定义，位选信号单独处理。</p></article></div><div class="panel bit-example"><h3>数字 2 的逐位对应关系</h3><div id="encoding-bits" class="bit-grid"></div><p class="helper">每列固定对应一个段；比特权值相加：64 + 16 + 8 + 2 + 1 = 91 = 0x5B。</p><a href="index.html">进入实验台逐段验证 ↗</a></div></section><footer>SEGMENT LAB / 段码实验室 <span>段式显示技术与工具</span></footer><noscript>交互功能需要启用 JavaScript。</noscript></main></body></html>

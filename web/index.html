@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="段码实验室：字形查询、段码转换与多位数码管预览。">
+    <title>显示实验台 · Segment Lab</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/pages/index.js"></script>
+</head>
+<body>
+    <a class="skip" href="#main">跳转到工作区</a>
+    <aside class="sidebar">
+        <a class="brand" href="index.html"><svg class="brand-icon" viewBox="0 0 44 58" aria-hidden="true"><path d="M10 3h20l4 4-4 4H10L6 7zm24 8 4 4v12l-4 4-4-4V15zm0 20 4 4v12l-4 4-4-4V35zM10 47h20l4 4-4 4H10l-4-4zM6 31l4 4v12l-4 4-4-4V35zm0-20 4 4v12l-4 4-4-4V15zm4 14h20l4 4-4 4H10l-4-4z"/><circle cx="42" cy="52" r="2"/></svg> SEGMENT LAB</a>
+        <p class="sidebar-caption">段式显示开发工具与参考资料</p>
+        <nav aria-label="主导航"><a href="index.html" aria-current="page">01　显示实验台</a><a href="characters.html">02　字符库</a><a href="encoding.html">03　编码原理</a></nav>
+        <div class="sidebar-foot">七段数码管 · 含小数点<br>字形 / 编码 / 多位预览</div>
+    </aside>
+    <main id="main">
+        <header class="page-header"><div><p class="eyebrow">DISPLAY ENGINEERING TOOLKIT</p><h1>显示实验台<span>Segment Lab</span></h1><p class="subtitle">逐段编辑单字显示，组合多位文本并导出段码。</p></div><span class="badge">七段 + DP</span></header>
+<section id="workbench" aria-labelledby="workbench-title">
+            <div class="section-heading"><h2 id="workbench-title">显示实验台</h2><span>01 / WORKBENCH</span></div>
+            <div class="bench">
+                <div class="display-panel"><div class="panel-caption">SINGLE DIGIT <span id="selected">字符 2</span></div><div id="single-display" class="single-display"></div><div id="segment-switches" class="switches"></div><p class="segment-hint">开关标记：段名 · bit 编号</p></div>
+                <div class="control-panel"><h3>段码输出</h3><label for="polarity">驱动极性</label><select id="polarity"><option value="cathode">共阴极 · 高电平点亮</option><option value="anode">共阳极 · 低电平点亮</option></select><div class="color-control"><label for="display-color">显示颜色</label><input id="display-color" type="color" value="#ff3838" aria-describedby="color-help"><span id="color-help" class="helper">同步应用于全部显示预览</span></div><div class="readouts"><div><span>逻辑段码</span><output id="logic-code"></output></div><div><span>段电平码</span><output id="level-code"></output></div></div><label>逻辑二进制 · 高位 → 低位</label><div id="binary-code" class="bit-grid" aria-live="polite"></div><p id="lit-segments" class="helper"></p><button id="reset">清空亮段</button></div>
+            </div>
+            <div class="panel composer"><div><h3>多位显示预览</h3><p class="helper">小数点附于前一显示位；保留输入大小写。</p></div><div class="composer-fields"><label>显示文本<input id="text-input" value="12.34" maxlength="64" spellcheck="false"></label><label>显示位数<input id="digits-input" type="number" min="1" max="12" value="4"></label></div><div id="multi-display" class="multi-display"></div><p id="compose-status" role="status" aria-live="polite"></p><div class="export-row"><code id="array-code"></code><button id="copy-code">复制 C 数组</button></div></div>
+        </section><footer>SEGMENT LAB / 段码实验室 <span>段式显示技术与工具</span></footer><noscript>交互功能需要启用 JavaScript。</noscript></main></body></html>

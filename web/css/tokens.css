@@ -1,0 +1,15 @@
+/* 全站设计变量：组件使用语义变量，避免重复写入颜色值。 */
+:root {
+    --color-bg: #f2f4f6;
+    --color-panel: #ffffff;
+    --color-ink: #202735;
+    --color-muted: #707987;
+    --color-border: #e0e5eb;
+    --color-accent: #e85d30;
+    --color-display: #171f2a;
+    --color-segment-off: #2b3542;
+    --color-segment-on: #ff3838;
+    --radius: 12px;
+    --font-ui: system-ui, "Microsoft YaHei", sans-serif;
+    --font-code: Consolas, monospace;
+}
