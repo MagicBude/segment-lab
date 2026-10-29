@@ -18,10 +18,10 @@ for page in list(root.rglob('*.md'))+list((root/'web').rglob('*.html')):
  links=re.findall(r'(?:href|src)="([^"]+)"',text) if page.suffix=='.html' else re.findall(r'\]\(([^)]+)\)',text)
  for link in links:
   if link.startswith(('#','http:','https:','mailto:')):continue
-  assert (page.parent/link.split('#')[0]).exists(),f'{page}: missing {link}'
+  assert (page.parent/link.split('#')[0].split('?')[0]).exists(),f'{page}: missing {link}'
 print('PASS: 66 mappings, CSV sync, polarity, local links')
 
 # 浏览器 ES 模块依赖必须存在，避免仅入口 HTML 检查通过。
 for module in (root / 'web/js').rglob('*.js'):
  for target in re.findall(r"from ['\"]([^'\"]+)['\"]", module.read_text(encoding='utf-8')):
-  assert (module.parent / target).exists(), f'Missing module: {target}'
+  assert (module.parent / target.split('?')[0]).exists(), f'Missing module: {target}'

@@ -1,9 +1,9 @@
-import { glyphs } from '../data/glyphs.js';
-import { sevenSegment } from '../data/layouts.js';
-import { encode, compose, hex } from '../core/encoding.js';
-import { createDigit } from '../components/display.js';
+import { glyphs } from '../data/glyphs.js?v=20261029-baseline2';
+import { sevenSegment } from '../data/layouts.js?v=20261029-baseline2';
+import { encode, compose, hex } from '../core/encoding.js?v=20261029-baseline2';
+import { createDigit } from '../components/display.js?v=20261029-baseline2';
 
-import { renderBits, setupColor } from '../components/controls.js';
+import { renderBits, setupColor } from '../components/controls.js?v=20261029-baseline2';
 const byId = id => document.getElementById(id);
 const state = { mask: 0x5B, polarity: 'cathode', category: 'all', query: '' };
 /** 判断字符所属类别；大小写保持独立。 */

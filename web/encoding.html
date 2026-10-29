@@ -7,7 +7,7 @@
     <title>编码原理 · Segment Lab</title>
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/main.css">
-    <script type="module" src="js/pages/encoding.js"></script>
+    <script type="module" src="js/pages/encoding.js?v=20261029-baseline2"></script>
 </head>
 <body>
     <a class="skip" href="#main">跳转到工作区</a>
@@ -19,4 +19,6 @@
     </aside>
     <main id="main">
         <header class="page-header"><div><p class="eyebrow">DISPLAY ENGINEERING TOOLKIT</p><h1>编码原理<span>Segment Lab</span></h1><p class="subtitle">从段位置、比特权值到段电平，建立完整的编码对应关系。</p></div><span class="badge">七段 + DP</span></header>
-<section id="guide"><div class="section-heading"><h2>编码原理</h2><span>03 / ENCODING</span></div><div class="guide-grid"><article class="panel"><span class="step">01</span><h3>段位置 → 比特</h3><p>a 是上横段，随后 b、c 为右侧，d 为下横段，e、f 为左侧，g 为中横段。bit0～bit7 依次对应 a、b、c、d、e、f、g、dp。</p><p>逻辑 1 表示点亮，0 表示熄灭。段名与器件引脚编号独立。</p></article><article class="panel"><span class="step">02</span><h3>比特 → 十六进制</h3><p>数字 2 点亮 a、b、d、e、g。从高位写起得到 0101 1011，每四位转换一次：</p><code class="formula">0101 1011₂ → 0x5B</code><p>字符 '2' 的 ASCII 为 0x32，与显示段码不同。</p></article><article class="panel"><span class="step">03</span><h3>逻辑 → 段电平</h3><p>位序相同、直接驱动且没有额外反相时，共阴段电平等于逻辑段码，共阳段电平为其八位取反。</p><code class="formula">0x5B XOR 0xFF → 0xA4</code><p>专用驱动芯片还须遵循寄存器定义，位选信号单独处理。</p></article></div><div class="panel bit-example"><h3>数字 2 的逐位对应关系</h3><div id="encoding-bits" class="bit-grid"></div><p class="helper">每列固定对应一个段；比特权值相加：64 + 16 + 8 + 2 + 1 = 91 = 0x5B。</p><a href="index.html">进入实验台逐段验证 ↗</a></div></section><footer>SEGMENT LAB / 段码实验室 <span>段式显示技术与工具</span></footer><noscript>交互功能需要启用 JavaScript。</noscript></main></body></html>
+<section id="guide"><div class="section-heading"><h2>编码原理</h2><span>03 / ENCODING</span></div><div class="guide-grid"><article class="panel"><span class="step">01</span><h3>段位置 → 比特</h3><p>a 是上横段，随后 b、c 为右侧，d 为下横段，e、f 为左侧，g 为中横段。bit0～bit7 依次对应 a、b、c、d、e、f、g、dp。</p><p>逻辑 1 表示点亮，0 表示熄灭。段名与器件引脚编号独立。</p></article><article class="panel"><span class="step">02</span><h3>比特 → 十六进制</h3><p>数字 2 点亮 a、b、d、e、g。从高位写起得到 0101 1011，每四位转换一次：</p><code class="formula">0101 1011<sub>2</sub> → 0x5B</code><p>下标 ₂ 表示二进制，不是平方；0x 表示十六进制。A～F 对应十进制 10～15。每四位二进制对应一位十六进制：0101 为 5，1011 为 B。</p><p>字符 '2' 的 ASCII 为 0x32，与显示段码不同。</p></article><article class="panel"><span class="step">03</span><h3>逻辑 → 段电平</h3><p>位序相同、直接驱动且没有额外反相时，共阴段电平等于逻辑段码，共阳段电平为其八位取反。</p><code class="formula">0x5B XOR 0xFF → 0xA4</code><p>XOR 是逐位异或：相同得 0，不同得 1。0xFF 的八位均为 1，与它异或会翻转每一位。C 和 JavaScript 写作 <code>^</code>。</p><pre class="formula">    0101 1011 （0x5B）
+XOR 1111 1111 （0xFF）
+  = 1010 0100 （0xA4）</pre><p>专用驱动芯片还须遵循寄存器定义，位选信号单独处理。</p></article></div><div class="panel bit-example"><h3>数字 2 的逐位对应关系</h3><div id="encoding-bits" class="bit-grid"></div><p class="helper">每列固定对应一个段；比特权值相加：64 + 16 + 8 + 2 + 1 = 91 = 0x5B。</p><a href="index.html">进入实验台逐段验证 ↗</a></div><article class="panel bit-example"><h3>小数点与按位或 OR</h3><p>按位或：任一输入位为 1，结果即为 1。C 与 JavaScript 写作 <code>|</code>。默认位序中，小数点为 bit7，段码为 0x80。</p><code class="formula">2. → 0x5B | 0x80 = 0xDB</code><p>OR 添加亮段，XOR 翻转位；添加小数点使用 OR，重复添加不会将它熄灭。</p></article></section><footer>SEGMENT LAB / 段码实验室 <span>段式显示技术与工具</span></footer><noscript>交互功能需要启用 JavaScript。</noscript></main></body></html>
